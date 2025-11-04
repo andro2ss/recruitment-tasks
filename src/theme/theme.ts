@@ -54,4 +54,24 @@ export const theme = createTheme({
     borderRadius: 8,
   },
   spacing: 8,
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&:focus': {
+            outline: 'none',
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&:focus': {
+            outline: 'none',
+          },
+        },
+      },
+    },
+  },
 });
