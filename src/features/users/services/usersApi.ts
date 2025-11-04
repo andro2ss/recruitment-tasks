@@ -13,10 +13,17 @@ const apiClient = axios.create({
 });
 
 export const usersApi = {
-  getUsers: async (page: number = 1): Promise<{ users: User[]; totalPages: number }> => {
-    const response = await apiClient.get('/users', {
-      params: { page, per_page: 20 },
-    });
+  getUsers: async (page: number = 1, searchQuery?: string): Promise<{ users: User[]; totalPages: number }> => {
+    const params: { page: number; per_page: number; name?: string } = {
+      page,
+      per_page: 20,
+    };
+
+    if (searchQuery?.trim()) {
+      params.name = searchQuery.trim();
+    }
+
+    const response = await apiClient.get('/users', { params });
     
     const totalPages = parseInt(response.headers['x-pagination-pages'] || '1');
     
@@ -34,16 +41,5 @@ export const usersApi = {
   updateUser: async (id: number, data: Partial<UserFormData>): Promise<User> => {
     const response = await apiClient.patch(`/users/${id}`, data);
     return response.data;
-  },
-
-  searchUsers: async (query: string): Promise<User[]> => {
-    const { users } = await usersApi.getUsers(1);
-    
-    const lowerQuery = query.toLowerCase();
-    return users.filter(
-      (user) =>
-        user.name.toLowerCase().includes(lowerQuery) ||
-        user.email.toLowerCase().includes(lowerQuery)
-    );
   },
 };

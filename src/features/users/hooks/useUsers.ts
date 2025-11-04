@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { usersApi } from '../services/usersApi';
 
-export const useUsers = (page: number = 1) => {
+export const useUsers = (page: number, searchQuery?: string) => {
   return useQuery({
-    queryKey: ['users', page],
-    queryFn: () => usersApi.getUsers(page),
+    queryKey: ['users', page, searchQuery],
+    queryFn: () => usersApi.getUsers(page, searchQuery),
   });
 };
 

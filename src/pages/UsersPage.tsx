@@ -1,7 +1,6 @@
 import { Box, Alert } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUsers } from '../features/users/hooks/useUsers';
-import { useUserSearch } from '../features/users/hooks/useUserSearch';
 import { UserSearchBar } from '../features/users/components/UserSearchBar';
 import { UserList } from '../features/users/components/UserList';
 import { UserEditDialog } from '../features/users/components/UserEditDialog';
@@ -9,15 +8,21 @@ import { type User } from '../features/users/types/user.types';
 import { PageHeader } from '../components/molecules/PageHeader';
 import { PageTitle } from '../components/atoms/PageTitle';
 import { PageDescription } from '../components/atoms/PageDescription';
+import { useDebounce } from '../hooks/useDebounce';
 
 export const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [dialogKey, setDialogKey] = useState(0);
 
-  const { data, isLoading, error } = useUsers(currentPage);
-  const { searchQuery, setSearchQuery, filteredUsers } = useUserSearch(data?.users);
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+  const { data, isLoading, error } = useUsers(currentPage, debouncedSearchQuery);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearchQuery]);
 
   const handleEditUser = (user: User) => {
     setSelectedUser(user);
@@ -28,6 +33,10 @@ export const UsersPage = () => {
     setIsEditDialogOpen(false);
     setSelectedUser(null);
     setDialogKey(prev => prev + 1);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
   };
 
   return (
@@ -45,10 +54,10 @@ export const UsersPage = () => {
         </Alert>
       )}
 
-      <UserSearchBar value={searchQuery} onChange={setSearchQuery} />
+      <UserSearchBar value={searchQuery} onChange={handleSearchChange} />
 
       <UserList
-        users={filteredUsers}
+        users={data?.users || []}
         isLoading={isLoading}
         currentPage={currentPage}
         totalPages={data?.totalPages || 1}
