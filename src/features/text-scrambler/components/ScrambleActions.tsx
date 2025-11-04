@@ -1,17 +1,17 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button } from '@mui/material'
 
 interface ScrambleActionsProps {
-  onScramble: () => void;
-  onReset: () => void;
-  scrambleLabel?: string;
-  resetLabel?: string;
+  onScramble: () => void
+  onReset: () => void
+  scrambleLabel?: string
+  resetLabel?: string
 }
 
-export const ScrambleActions = ({ 
-  onScramble, 
+export const ScrambleActions = ({
+  onScramble,
   onReset,
   scrambleLabel = 'Scramble Text',
-  resetLabel = 'Reset'
+  resetLabel = 'Reset',
 }: ScrambleActionsProps) => {
   return (
     <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
@@ -22,5 +22,5 @@ export const ScrambleActions = ({
         {resetLabel}
       </Button>
     </Box>
-  );
-};
+  )
+}

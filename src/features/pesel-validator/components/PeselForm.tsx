@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Box, TextField, Button, Paper } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { validatePesel } from '../utils/validatePesel';
-import { extractPeselData, type PeselData } from '../utils/extractPeselData';
-import { ValidationResultCard } from './ValidationResultCard';
+import { useState } from 'react'
+import { Box, TextField, Button, Paper } from '@mui/material'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { validatePesel } from '../utils/validatePesel'
+import { extractPeselData, type PeselData } from '../utils/extractPeselData'
+import { ValidationResultCard } from './ValidationResultCard'
 
 const peselSchema = z.object({
   pesel: z
@@ -15,13 +15,13 @@ const peselSchema = z.object({
     .refine((val) => validatePesel(val), {
       message: 'Invalid PESEL number',
     }),
-});
+})
 
-type PeselFormData = z.infer<typeof peselSchema>;
+type PeselFormData = z.infer<typeof peselSchema>
 
 export const PeselForm = () => {
-  const [validationResult, setValidationResult] = useState<PeselData | null>(null);
-  const [showResult, setShowResult] = useState(false);
+  const [validationResult, setValidationResult] = useState<PeselData | null>(null)
+  const [showResult, setShowResult] = useState(false)
 
   const {
     register,
@@ -30,26 +30,26 @@ export const PeselForm = () => {
     reset,
   } = useForm<PeselFormData>({
     resolver: zodResolver(peselSchema),
-  });
+  })
 
   const onSubmit = (data: PeselFormData) => {
-    const result = extractPeselData(data.pesel);
-    setValidationResult(result);
-    setShowResult(true);
-  };
+    const result = extractPeselData(data.pesel)
+    setValidationResult(result)
+    setShowResult(true)
+  }
 
   const handleReset = () => {
-    reset();
-    setShowResult(false);
-    setValidationResult(null);
-  };
+    reset()
+    setShowResult(false)
+    setValidationResult(null)
+  }
 
   return (
     <Box>
-      <Paper 
+      <Paper
         elevation={0}
-        sx={{ 
-          p: 4, 
+        sx={{
+          p: 4,
           mb: 4,
           background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(10px)',
@@ -79,5 +79,5 @@ export const PeselForm = () => {
 
       {showResult && <ValidationResultCard data={validationResult} />}
     </Box>
-  );
-};
+  )
+}

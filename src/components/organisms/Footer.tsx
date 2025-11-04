@@ -1,6 +1,6 @@
-import { Box, Container, Typography, IconButton, Link } from '@mui/material';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import { Box, Container, Typography, IconButton, Link } from '@mui/material'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import GitHubIcon from '@mui/icons-material/GitHub'
 
 export const Footer = () => {
   return (
@@ -55,5 +55,5 @@ export const Footer = () => {
         </Box>
       </Container>
     </Box>
-  );
-};
+  )
+}

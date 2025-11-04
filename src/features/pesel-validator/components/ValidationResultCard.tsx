@@ -1,10 +1,10 @@
-import { Paper, Typography, Box, Alert, Chip } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ErrorIcon from '@mui/icons-material/Error';
-import { type PeselData } from '../utils/extractPeselData';
+import { Paper, Typography, Box, Alert, Chip } from '@mui/material'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import ErrorIcon from '@mui/icons-material/Error'
+import { type PeselData } from '../utils/extractPeselData'
 
 interface ValidationResultCardProps {
-  data: PeselData | null;
+  data: PeselData | null
 }
 
 export const ValidationResultCard = ({ data }: ValidationResultCardProps) => {
@@ -16,7 +16,7 @@ export const ValidationResultCard = ({ data }: ValidationResultCardProps) => {
           The provided PESEL number is invalid or contains an incorrect date.
         </Typography>
       </Alert>
-    );
+    )
   }
 
   const formatDate = (date: Date): string => {
@@ -24,15 +24,15 @@ export const ValidationResultCard = ({ data }: ValidationResultCardProps) => {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
-    }).format(date);
-  };
+    }).format(date)
+  }
 
   return (
     <Alert severity="success" icon={<CheckCircleIcon />}>
       <Typography variant="h6" gutterBottom>
         Valid PESEL Number
       </Typography>
-      
+
       <Paper variant="outlined" sx={{ p: 2, mt: 2, bgcolor: 'background.paper' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Box>
@@ -58,5 +58,5 @@ export const ValidationResultCard = ({ data }: ValidationResultCardProps) => {
         </Box>
       </Paper>
     </Alert>
-  );
-};
+  )
+}

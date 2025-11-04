@@ -1,9 +1,9 @@
-import { TextField, InputAdornment } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { TextField, InputAdornment } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 
 interface UserSearchBarProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: string
+  onChange: (value: string) => void
 }
 
 export const UserSearchBar = ({ value, onChange }: UserSearchBarProps) => {
@@ -47,5 +47,5 @@ export const UserSearchBar = ({ value, onChange }: UserSearchBarProps) => {
         },
       }}
     />
-  );
-};
+  )
+}

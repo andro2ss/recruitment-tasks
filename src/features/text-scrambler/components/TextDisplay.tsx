@@ -1,5 +1,5 @@
-import { Paper, Typography, Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Paper, Typography, Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 const TextBox = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -13,11 +13,11 @@ const TextBox = styled(Paper)(({ theme }) => ({
   background: 'rgba(255, 255, 255, 0.95)',
   backdropFilter: 'blur(10px)',
   borderRadius: '12px',
-}));
+}))
 
 interface TextDisplayProps {
-  title: string;
-  content: string;
+  title: string
+  content: string
 }
 
 export const TextDisplay = ({ title, content }: TextDisplayProps) => {
@@ -28,5 +28,5 @@ export const TextDisplay = ({ title, content }: TextDisplayProps) => {
       </Typography>
       <TextBox elevation={1}>{content}</TextBox>
     </Box>
-  );
-};
+  )
+}

@@ -1,8 +1,8 @@
-import { Typography } from '@mui/material';
-import { type ReactNode } from 'react';
+import { Typography } from '@mui/material'
+import { type ReactNode } from 'react'
 
 interface PageDescriptionProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const PageDescription = ({ children }: PageDescriptionProps) => {
@@ -10,5 +10,5 @@ export const PageDescription = ({ children }: PageDescriptionProps) => {
     <Typography variant="body1" color="text.secondary">
       {children}
     </Typography>
-  );
-};
+  )
+}

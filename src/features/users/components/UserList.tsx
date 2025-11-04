@@ -1,14 +1,14 @@
-import { Box, CircularProgress, Typography, Pagination } from '@mui/material';
-import { type User } from '../types/user.types';
-import { UserCard } from './UserCard';
+import { Box, CircularProgress, Typography, Pagination } from '@mui/material'
+import { type User } from '../types/user.types'
+import { UserCard } from './UserCard'
 
 interface UserListProps {
-  users: User[];
-  isLoading: boolean;
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  onEditUser: (user: User) => void;
+  users: User[]
+  isLoading: boolean
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+  onEditUser: (user: User) => void
 }
 
 export const UserList = ({
@@ -24,7 +24,7 @@ export const UserList = ({
       <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
         <CircularProgress />
       </Box>
-    );
+    )
   }
 
   if (users.length === 0) {
@@ -34,7 +34,7 @@ export const UserList = ({
           No users found
         </Typography>
       </Box>
-    );
+    )
   }
 
   return (
@@ -63,5 +63,5 @@ export const UserList = ({
         </Box>
       )}
     </Box>
-  );
-};
+  )
+}

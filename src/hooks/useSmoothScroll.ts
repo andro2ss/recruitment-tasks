@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+import 'lenis/dist/lenis.css'
 
 export const useSmoothScroll = () => {
   useEffect(() => {
@@ -8,17 +8,17 @@ export const useSmoothScroll = () => {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-    });
+    })
 
     function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      lenis.raf(time)
+      requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf);
+    requestAnimationFrame(raf)
 
     return () => {
-      lenis.destroy();
-    };
-  }, []);
-};
+      lenis.destroy()
+    }
+  }, [])
+}

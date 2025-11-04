@@ -1,11 +1,11 @@
-import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider } from 'react-router-dom';
-import { GlobalStyles } from './theme/GlobalStyles';
-import { theme } from './theme/theme';
-import { router } from './router';
-import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { ThemeProvider } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider } from 'react-router-dom'
+import { GlobalStyles } from './theme/GlobalStyles'
+import { theme } from './theme/theme'
+import { router } from './router'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,10 +15,10 @@ const queryClient = new QueryClient({
       staleTime: 5 * 60 * 1000,
     },
   },
-});
+})
 
 const App = () => {
-  useSmoothScroll();
+  useSmoothScroll()
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,7 +28,7 @@ const App = () => {
         <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

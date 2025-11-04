@@ -1,51 +1,49 @@
-import { Box, Alert } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { useUsers } from '../features/users/hooks/useUsers';
-import { UserSearchBar } from '../features/users/components/UserSearchBar';
-import { UserList } from '../features/users/components/UserList';
-import { UserEditDialog } from '../features/users/components/UserEditDialog';
-import { type User } from '../features/users/types/user.types';
-import { PageHeader } from '../components/molecules/PageHeader';
-import { PageTitle } from '../components/atoms/PageTitle';
-import { PageDescription } from '../components/atoms/PageDescription';
-import { useDebounce } from '../hooks/useDebounce';
+import { Box, Alert } from '@mui/material'
+import { useState, useEffect } from 'react'
+import { useUsers } from '../features/users/hooks/useUsers'
+import { UserSearchBar } from '../features/users/components/UserSearchBar'
+import { UserList } from '../features/users/components/UserList'
+import { UserEditDialog } from '../features/users/components/UserEditDialog'
+import { type User } from '../features/users/types/user.types'
+import { PageHeader } from '../components/molecules/PageHeader'
+import { PageTitle } from '../components/atoms/PageTitle'
+import { PageDescription } from '../components/atoms/PageDescription'
+import { useDebounce } from '../hooks/useDebounce'
 
 export const UsersPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [dialogKey, setDialogKey] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+  const [dialogKey, setDialogKey] = useState(0)
 
-  const debouncedSearchQuery = useDebounce(searchQuery, 500);
-  const { data, isLoading, error } = useUsers(currentPage, debouncedSearchQuery);
+  const debouncedSearchQuery = useDebounce(searchQuery, 500)
+  const { data, isLoading, error } = useUsers(currentPage, debouncedSearchQuery)
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [debouncedSearchQuery]);
+    setCurrentPage(1)
+  }, [debouncedSearchQuery])
 
   const handleEditUser = (user: User) => {
-    setSelectedUser(user);
-    setIsEditDialogOpen(true);
-  };
+    setSelectedUser(user)
+    setIsEditDialogOpen(true)
+  }
 
   const handleCloseDialog = () => {
-    setIsEditDialogOpen(false);
-    setSelectedUser(null);
-    setDialogKey(prev => prev + 1);
-  };
+    setIsEditDialogOpen(false)
+    setSelectedUser(null)
+    setDialogKey((prev) => prev + 1)
+  }
 
   const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
-  };
+    setSearchQuery(query)
+  }
 
   return (
     <Box sx={{ py: { xs: 2, md: 4 } }}>
       <PageHeader>
         <PageTitle>Users Management</PageTitle>
-        <PageDescription>
-          Browse, search, and edit users from the GoRest API.
-        </PageDescription>
+        <PageDescription>Browse, search, and edit users from the GoRest API.</PageDescription>
       </PageHeader>
 
       {error && (
@@ -72,5 +70,5 @@ export const UsersPage = () => {
         onClose={handleCloseDialog}
       />
     </Box>
-  );
-};
+  )
+}

@@ -1,15 +1,13 @@
-import { Button, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { useRef, useState } from 'react';
+import { Button, Paper, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import { useRef, useState } from 'react'
 
 const UploadArea = styled(Paper)<{ isDragging: boolean }>(({ theme, isDragging }) => ({
   padding: theme.spacing(6),
   textAlign: 'center',
   border: `2px dashed ${isDragging ? theme.palette.primary.main : theme.palette.divider}`,
-  background: isDragging 
-    ? 'rgba(25, 118, 210, 0.08)' 
-    : 'rgba(255, 255, 255, 0.95)',
+  background: isDragging ? 'rgba(25, 118, 210, 0.08)' : 'rgba(255, 255, 255, 0.95)',
   backdropFilter: 'blur(10px)',
   borderRadius: '16px',
   cursor: 'pointer',
@@ -19,50 +17,50 @@ const UploadArea = styled(Paper)<{ isDragging: boolean }>(({ theme, isDragging }
     background: 'rgba(25, 118, 210, 0.08)',
     transform: 'translateY(-2px)',
   },
-}));
+}))
 
 const HiddenInput = styled('input')({
   display: 'none',
-});
+})
 
 interface FileUploadZoneProps {
-  onFileSelect: (file: File) => void;
-  fileName: string | null;
+  onFileSelect: (file: File) => void
+  fileName: string | null
 }
 
 export const FileUploadZone = ({ onFileSelect, fileName }: FileUploadZoneProps) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
+    e.preventDefault()
+    setIsDragging(true)
+  }
 
   const handleDragLeave = () => {
-    setIsDragging(false);
-  };
+    setIsDragging(false)
+  }
 
   const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
+    e.preventDefault()
+    setIsDragging(false)
 
-    const files = e.dataTransfer.files;
+    const files = e.dataTransfer.files
     if (files.length > 0) {
-      onFileSelect(files[0]);
+      onFileSelect(files[0])
     }
-  };
+  }
 
   const handleClick = () => {
-    inputRef.current?.click();
-  };
+    inputRef.current?.click()
+  }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+    const files = e.target.files
     if (files && files.length > 0) {
-      onFileSelect(files[0]);
+      onFileSelect(files[0])
     }
-  };
+  }
 
   return (
     <>
@@ -72,7 +70,7 @@ export const FileUploadZone = ({ onFileSelect, fileName }: FileUploadZoneProps) 
         accept=".txt,text/plain"
         onChange={handleFileChange}
       />
-      
+
       <UploadArea
         isDragging={isDragging}
         onDragOver={handleDragOver}
@@ -93,5 +91,5 @@ export const FileUploadZone = ({ onFileSelect, fileName }: FileUploadZoneProps) 
         </Button>
       </UploadArea>
     </>
-  );
-};
+  )
+}

@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { IconButton, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react'
+import { IconButton, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const tasks = [
   { path: '/text-scrambler', label: 'Text Scrambler' },
   { path: '/pesel-validator', label: 'PESEL Validator' },
   { path: '/users', label: 'Users' },
-];
+]
 
 export const MobileMenu = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleNavigate = (path: string) => {
-    navigate(path);
-    setOpen(false);
-  };
+    navigate(path)
+    setOpen(false)
+  }
 
   return (
     <>
@@ -25,7 +25,7 @@ export const MobileMenu = () => {
         color="inherit"
         aria-label="menu"
         onClick={() => setOpen(true)}
-        sx={{ 
+        sx={{
           display: { xs: 'block', md: 'none' },
           '&:focus': {
             outline: 'none',
@@ -35,11 +35,7 @@ export const MobileMenu = () => {
         <MenuIcon />
       </IconButton>
 
-      <Drawer
-        anchor="right"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <List sx={{ width: 250, pt: 2 }}>
           {tasks.map((task) => (
             <ListItem key={task.path} disablePadding>
@@ -54,5 +50,5 @@ export const MobileMenu = () => {
         </List>
       </Drawer>
     </>
-  );
-};
+  )
+}

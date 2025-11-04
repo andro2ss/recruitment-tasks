@@ -1,20 +1,20 @@
-import { Card, CardContent, Typography, Box, Chip, IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import { type User } from '../types/user.types';
+import { Card, CardContent, Typography, Box, Chip, IconButton } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit'
+import { type User } from '../types/user.types'
 
 interface UserCardProps {
-  user: User;
-  onEdit: (user: User) => void;
+  user: User
+  onEdit: (user: User) => void
 }
 
 export const UserCard = ({ user, onEdit }: UserCardProps) => {
   const handleEdit = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onEdit(user);
-  };
+    e.stopPropagation()
+    onEdit(user)
+  }
 
   return (
-    <Card 
+    <Card
       elevation={0}
       onClick={() => onEdit(user)}
       sx={{
@@ -51,8 +51,8 @@ export const UserCard = ({ user, onEdit }: UserCardProps) => {
               />
             </Box>
           </Box>
-          <IconButton 
-            color="primary" 
+          <IconButton
+            color="primary"
             onClick={handleEdit}
             sx={{
               '&:hover': {
@@ -65,5 +65,5 @@ export const UserCard = ({ user, onEdit }: UserCardProps) => {
         </Box>
       </CardContent>
     </Card>
-  );
-};
+  )
+}

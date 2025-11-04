@@ -1,15 +1,15 @@
-import { Box, Button } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Box, Button } from '@mui/material'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const tasks = [
   { path: '/text-scrambler', label: 'Text Scrambler' },
   { path: '/pesel-validator', label: 'PESEL Validator' },
   { path: '/users', label: 'Users' },
-];
+]
 
 export const Navigation = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <Box sx={{ display: 'flex', gap: 1 }}>
@@ -32,5 +32,5 @@ export const Navigation = () => {
         </Button>
       ))}
     </Box>
-  );
-};
+  )
+}

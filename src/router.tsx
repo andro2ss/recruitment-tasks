@@ -1,12 +1,18 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { MainLayout } from './components/templates/MainLayout';
-import { HomePage } from './pages/HomePage';
-import { LoadingFallback } from './components/atoms/LoadingFallback';
+import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { MainLayout } from './components/templates/MainLayout'
+import { HomePage } from './pages/HomePage'
+import { LoadingFallback } from './components/atoms/LoadingFallback'
 
-const TextScramblerPage = lazy(() => import('./pages/TextScramblerPage').then(module => ({ default: module.TextScramblerPage })));
-const PeselValidatorPage = lazy(() => import('./pages/PeselValidatorPage').then(module => ({ default: module.PeselValidatorPage })));
-const UsersPage = lazy(() => import('./pages/UsersPage').then(module => ({ default: module.UsersPage })));
+const TextScramblerPage = lazy(() =>
+  import('./pages/TextScramblerPage').then((module) => ({ default: module.TextScramblerPage }))
+)
+const PeselValidatorPage = lazy(() =>
+  import('./pages/PeselValidatorPage').then((module) => ({ default: module.PeselValidatorPage }))
+)
+const UsersPage = lazy(() =>
+  import('./pages/UsersPage').then((module) => ({ default: module.UsersPage }))
+)
 
 export const router = createBrowserRouter([
   {
@@ -43,4 +49,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+])

@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
-import { PeselForm } from '../features/pesel-validator/components/PeselForm';
-import { PageHeader } from '../components/molecules/PageHeader';
-import { PageTitle } from '../components/atoms/PageTitle';
-import { PageDescription } from '../components/atoms/PageDescription';
+import { Box } from '@mui/material'
+import { PeselForm } from '../features/pesel-validator/components/PeselForm'
+import { PageHeader } from '../components/molecules/PageHeader'
+import { PageTitle } from '../components/atoms/PageTitle'
+import { PageDescription } from '../components/atoms/PageDescription'
 
 export const PeselValidatorPage = () => {
   return (
@@ -16,5 +16,5 @@ export const PeselValidatorPage = () => {
 
       <PeselForm />
     </Box>
-  );
-};
+  )
+}
