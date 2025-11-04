@@ -1,9 +1,13 @@
-import { Box, Typography, Button, Alert, Paper } from '@mui/material';
+import { Box, Alert } from '@mui/material';
 import { useState } from 'react';
 import { FileUploadZone } from '../features/text-scrambler/components/FileUploadZone';
 import { TextComparison } from '../features/text-scrambler/components/TextComparison';
+import { ScrambleActions } from '../features/text-scrambler/components/ScrambleActions';
 import { useFileReader } from '../features/text-scrambler/hooks/useFileReader';
 import { scrambleText } from '../features/text-scrambler/utils/scrambleText';
+import { PageHeader } from '../components/molecules/PageHeader';
+import { PageTitle } from '../components/atoms/PageTitle';
+import { PageDescription } from '../components/atoms/PageDescription';
 
 export const TextScramblerPage = () => {
   const { content, fileName, error, readFile, reset } = useFileReader();
@@ -26,30 +30,17 @@ export const TextScramblerPage = () => {
     setScrambledContent(null);
   };
 
+  const hasContent = Boolean(content);
+  const hasScrambledContent = Boolean(scrambledContent);
+
   return (
     <Box sx={{ py: { xs: 2, md: 4 } }}>
-      <Paper 
-        elevation={0}
-        sx={{ 
-          p: { xs: 3, md: 4 }, 
-          mb: 4,
-          background: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: 3,
-        }}
-      >
-        <Typography 
-          variant="h3" 
-          component="h1" 
-          gutterBottom
-          sx={{ fontSize: { xs: '1.75rem', md: '2.5rem' } }}
-        >
-          Text Scrambler
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
+      <PageHeader>
+        <PageTitle>Text Scrambler</PageTitle>
+        <PageDescription>
           Upload a text file and scramble the letters in each word while preserving the first and last characters.
-        </Typography>
-      </Paper>
+        </PageDescription>
+      </PageHeader>
 
       {error && (
         <Alert severity="error" sx={{ mb: 3 }}>
@@ -57,31 +48,26 @@ export const TextScramblerPage = () => {
         </Alert>
       )}
 
-      <Box sx={{ mb: 4 }}>
-        <FileUploadZone onFileSelect={handleFileSelect} fileName={fileName} />
-      </Box>
-
-      {content && !scrambledContent && (
-        <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
-          <Button variant="contained" size="large" onClick={handleScramble}>
-            Scramble Text
-          </Button>
-          <Button variant="outlined" size="large" onClick={handleReset}>
-            Reset
-          </Button>
+      {!hasScrambledContent && (
+        <Box sx={{ mb: 4 }}>
+          <FileUploadZone onFileSelect={handleFileSelect} fileName={fileName} />
         </Box>
       )}
 
-      {content && scrambledContent && (
+      {hasContent && !hasScrambledContent && (
+        <ScrambleActions onScramble={handleScramble} onReset={handleReset} />
+      )}
+
+      {hasContent && hasScrambledContent && (
         <>
-          <TextComparison originalText={content} scrambledText={scrambledContent} />
-          <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
-            <Button variant="contained" size="large" onClick={handleScramble}>
-              Scramble Again
-            </Button>
-            <Button variant="outlined" size="large" onClick={handleReset}>
-              Upload New File
-            </Button>
+          <TextComparison originalText={content!} scrambledText={scrambledContent!} />
+          <Box sx={{ mt: 4 }}>
+            <ScrambleActions 
+              onScramble={handleScramble} 
+              onReset={handleReset}
+              scrambleLabel="Scramble Again"
+              resetLabel="Upload New File"
+            />
           </Box>
         </>
       )}

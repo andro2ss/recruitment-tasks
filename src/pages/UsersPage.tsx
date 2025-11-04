@@ -1,4 +1,4 @@
-import { Box, Typography, Alert, Paper } from '@mui/material';
+import { Box, Alert } from '@mui/material';
 import { useState } from 'react';
 import { useUsers } from '../features/users/hooks/useUsers';
 import { useUserSearch } from '../features/users/hooks/useUserSearch';
@@ -6,6 +6,9 @@ import { UserSearchBar } from '../features/users/components/UserSearchBar';
 import { UserList } from '../features/users/components/UserList';
 import { UserEditDialog } from '../features/users/components/UserEditDialog';
 import { type User } from '../features/users/types/user.types';
+import { PageHeader } from '../components/molecules/PageHeader';
+import { PageTitle } from '../components/atoms/PageTitle';
+import { PageDescription } from '../components/atoms/PageDescription';
 
 export const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,28 +30,12 @@ export const UsersPage = () => {
 
   return (
     <Box sx={{ py: { xs: 2, md: 4 } }}>
-      <Paper 
-        elevation={0}
-        sx={{ 
-          p: { xs: 3, md: 4 }, 
-          mb: 4,
-          background: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: 3,
-        }}
-      >
-        <Typography 
-          variant="h3" 
-          component="h1" 
-          gutterBottom
-          sx={{ fontSize: { xs: '1.75rem', md: '2.5rem' } }}
-        >
-          Users Management
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
+      <PageHeader>
+        <PageTitle>Users Management</PageTitle>
+        <PageDescription>
           Browse, search, and edit users from the GoRest API.
-        </Typography>
-      </Paper>
+        </PageDescription>
+      </PageHeader>
 
       {error && (
         <Alert severity="error" sx={{ mb: 3 }}>
