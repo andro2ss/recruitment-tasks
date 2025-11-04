@@ -14,6 +14,7 @@ export const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [dialogKey, setDialogKey] = useState(0);
 
   const { data, isLoading, error } = useUsers(currentPage);
   const { searchQuery, setSearchQuery, filteredUsers } = useUserSearch(data?.users);
@@ -26,6 +27,7 @@ export const UsersPage = () => {
   const handleCloseDialog = () => {
     setIsEditDialogOpen(false);
     setSelectedUser(null);
+    setDialogKey(prev => prev + 1);
   };
 
   return (
@@ -55,6 +57,7 @@ export const UsersPage = () => {
       />
 
       <UserEditDialog
+        key={dialogKey}
         open={isEditDialogOpen}
         user={selectedUser}
         onClose={handleCloseDialog}

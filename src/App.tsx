@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import { GlobalStyles } from './theme/GlobalStyles';
 import { theme } from './theme/theme';
 import { router } from './router';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,6 +18,8 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  useSmoothScroll();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
@@ -29,4 +32,3 @@ const App = () => {
 };
 
 export default App;
-

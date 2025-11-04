@@ -2,7 +2,7 @@ import axios from 'axios';
 import { type User, type UserFormData } from '../types/user.types';
 
 const API_BASE_URL = 'https://gorest.co.in/public/v2';
-const API_TOKEN = 'your-token-here';
+const API_TOKEN = import.meta.env.VITE_GOREST_API_TOKEN || '';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

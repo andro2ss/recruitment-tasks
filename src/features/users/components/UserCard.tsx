@@ -8,13 +8,20 @@ interface UserCardProps {
 }
 
 export const UserCard = ({ user, onEdit }: UserCardProps) => {
+  const handleEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit(user);
+  };
+
   return (
     <Card 
       elevation={0}
+      onClick={() => onEdit(user)}
       sx={{
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(10px)',
         borderRadius: 3,
+        cursor: 'pointer',
         transition: 'all 0.3s ease',
         '&:hover': {
           transform: 'translateY(-4px)',
@@ -46,7 +53,7 @@ export const UserCard = ({ user, onEdit }: UserCardProps) => {
           </Box>
           <IconButton 
             color="primary" 
-            onClick={() => onEdit(user)}
+            onClick={handleEdit}
             sx={{
               '&:hover': {
                 background: 'rgba(25, 118, 210, 0.08)',

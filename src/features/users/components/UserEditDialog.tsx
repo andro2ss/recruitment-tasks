@@ -9,7 +9,7 @@ import {
   Box,
   Alert,
 } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { type User, type UserFormData } from '../types/user.types';
@@ -30,7 +30,7 @@ interface UserEditDialogProps {
 }
 
 export const UserEditDialog = ({ open, user, onClose }: UserEditDialogProps) => {
-  const { mutate: updateUser, isPending, isSuccess } = useUpdateUser();
+  const { mutate: updateUser, isPending, isSuccess, reset: resetMutation } = useUpdateUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
@@ -38,26 +38,26 @@ export const UserEditDialog = ({ open, user, onClose }: UserEditDialogProps) => 
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm<UserFormData>({
     resolver: zodResolver(userSchema),
-    defaultValues: user || undefined,
   });
 
   useEffect(() => {
-    if (user) {
+    if (open && user) {
       reset(user);
+      resetMutation();
+      setSubmitError(null);
     }
-  }, [user, reset]);
+  }, [open, user, reset, resetMutation]);
 
   useEffect(() => {
     if (isSuccess) {
       setTimeout(() => {
         onClose();
-        reset();
-        setSubmitError(null);
-      }, 1000);
+      }, 1500);
     }
-  }, [isSuccess, onClose, reset]);
+  }, [isSuccess, onClose]);
 
   const onSubmit = (data: UserFormData) => {
     if (!user) return;
@@ -75,11 +75,14 @@ export const UserEditDialog = ({ open, user, onClose }: UserEditDialogProps) => 
 
   const handleClose = () => {
     if (!isPending) {
-      onClose();
       reset();
+      resetMutation();
       setSubmitError(null);
+      onClose();
     }
   };
+
+  if (!user) return null;
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
@@ -116,29 +119,41 @@ export const UserEditDialog = ({ open, user, onClose }: UserEditDialogProps) => 
               helperText={errors.email?.message}
             />
 
-            <TextField
-              {...register('gender')}
-              label="Gender"
-              select
-              fullWidth
-              error={!!errors.gender}
-              helperText={errors.gender?.message}
-            >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-            </TextField>
+            <Controller
+              name="gender"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Gender"
+                  select
+                  fullWidth
+                  error={!!errors.gender}
+                  helperText={errors.gender?.message}
+                >
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                </TextField>
+              )}
+            />
 
-            <TextField
-              {...register('status')}
-              label="Status"
-              select
-              fullWidth
-              error={!!errors.status}
-              helperText={errors.status?.message}
-            >
-              <MenuItem value="active">Active</MenuItem>
-              <MenuItem value="inactive">Inactive</MenuItem>
-            </TextField>
+            <Controller
+              name="status"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Status"
+                  select
+                  fullWidth
+                  error={!!errors.status}
+                  helperText={errors.status?.message}
+                >
+                  <MenuItem value="active">Active</MenuItem>
+                  <MenuItem value="inactive">Inactive</MenuItem>
+                </TextField>
+              )}
+            />
           </Box>
         </DialogContent>
         <DialogActions>

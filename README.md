@@ -44,6 +44,18 @@ Browse and manage users from GoRest API:
 npm install
 ```
 
+## 🔑 Environment Setup
+
+Create a `.env.local` file in the root directory:
+
+```env
+VITE_GOREST_API_TOKEN=your-actual-token-here
+```
+
+Get your API token from [GoRest.co.in](https://gorest.co.in/consumer/login)
+
+**Important:** Never commit `.env.local` to version control. Use `.env.example` for reference.
+
 ## 🏃 Development
 
 ```bash
@@ -82,22 +94,6 @@ src/
 └── shared/             # Shared utilities
 ```
 
-## 🎨 Code Conventions
-
-- Arrow functions for components
-- TypeScript strict mode
-- No FC types (clean arrow functions)
-- Self-documenting code (no comments)
-- Atomic design pattern
-- Feature-based architecture
-
-## ⚠️ Note for Users API
-
-To use the edit functionality in Task 3, you need to:
-1. Get an API token from https://gorest.co.in/consumer/login
-2. Update the token in `src/features/users/services/usersApi.ts`
-
 ## 📄 License
 
 MIT
-
