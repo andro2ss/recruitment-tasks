@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, TextField, Button, Paper } from '@mui/material'
+import { Box, TextField, Button, Paper, Fade } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -64,6 +64,18 @@ export const PeselForm = () => {
             error={!!errors.pesel}
             helperText={errors.pesel?.message}
             placeholder="Enter 11-digit PESEL number"
+            inputProps={{
+              maxLength: 11,
+              inputMode: 'numeric',
+              pattern: '[0-9]*',
+            }}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit(onSubmit)()
+              } else if (!/[0-9]/.test(e.key)) {
+                e.preventDefault()
+              }
+            }}
             sx={{ mb: 3 }}
           />
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
@@ -77,7 +89,13 @@ export const PeselForm = () => {
         </form>
       </Paper>
 
-      {showResult && <ValidationResultCard data={validationResult} />}
+      {showResult && (
+        <Fade in timeout={500}>
+          <Box>
+            <ValidationResultCard data={validationResult} />
+          </Box>
+        </Fade>
+      )}
     </Box>
   )
 }
