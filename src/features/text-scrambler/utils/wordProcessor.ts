@@ -23,7 +23,7 @@ export const scrambleWord = (word: string): string => {
 };
 
 export const processWord = (word: string): string => {
-  const punctuationMatch = word.match(/^([^\w]*)([\w]+)([^\w]*)$/);
+  const punctuationMatch = word.match(/^([^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*)([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+)([^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*)$/);
   
   if (!punctuationMatch) {
     return word;

@@ -6,10 +6,10 @@ import { MobileMenu } from '../molecules/MobileMenu';
 import { Footer } from '../organisms/Footer';
 
 const MainContent = styled(Box)`
-  min-height: calc(100vh - 64px - 73px);
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 2rem 0;
+  padding: calc(64px + 2rem) 0 2rem 0;
+  flex: 1;
 `;
 
 export const MainLayout = () => {
@@ -17,7 +17,7 @@ export const MainLayout = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <AppBar position="static" elevation={0}>
+      <AppBar position="fixed" elevation={0} sx={{ zIndex: 1100 }}>
         <Toolbar>
           <Typography
             variant="h6"
