@@ -10,7 +10,9 @@ const TextBox = styled(Paper)(({ theme }) => ({
   fontSize: '14px',
   whiteSpace: 'pre-wrap',
   wordBreak: 'break-word',
-  backgroundColor: theme.palette.grey[50],
+  background: 'rgba(255, 255, 255, 0.95)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '12px',
 }));
 
 interface TextComparisonProps {

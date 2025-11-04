@@ -7,12 +7,17 @@ const UploadArea = styled(Paper)<{ isDragging: boolean }>(({ theme, isDragging }
   padding: theme.spacing(6),
   textAlign: 'center',
   border: `2px dashed ${isDragging ? theme.palette.primary.main : theme.palette.divider}`,
-  backgroundColor: isDragging ? theme.palette.action.hover : theme.palette.background.paper,
+  background: isDragging 
+    ? 'rgba(25, 118, 210, 0.08)' 
+    : 'rgba(255, 255, 255, 0.95)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '16px',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
   '&:hover': {
     borderColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.action.hover,
+    background: 'rgba(25, 118, 210, 0.08)',
+    transform: 'translateY(-2px)',
   },
 }));
 

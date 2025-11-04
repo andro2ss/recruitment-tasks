@@ -1,33 +1,33 @@
-import { Container, Box, Typography, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Typography, Paper } from '@mui/material';
 import { PeselForm } from '../features/pesel-validator/components/PeselForm';
 
 export const PeselValidatorPage = () => {
-  const navigate = useNavigate();
-
   return (
-    <Container maxWidth="md">
-      <Box sx={{ py: 4 }}>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate('/')}
-          sx={{ mb: 3 }}
+    <Box sx={{ maxWidth: '800px', mx: 'auto', py: { xs: 2, md: 4 } }}>
+      <Paper 
+        elevation={0}
+        sx={{ 
+          p: { xs: 3, md: 4 }, 
+          mb: 4,
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: 3,
+        }}
+      >
+        <Typography 
+          variant="h3" 
+          component="h1" 
+          gutterBottom
+          sx={{ fontSize: { xs: '1.75rem', md: '2.5rem' } }}
         >
-          Back to Home
-        </Button>
-
-        <Typography variant="h3" component="h1" gutterBottom>
           PESEL Validator
         </Typography>
         <Typography variant="body1" color="text.secondary" paragraph>
           Validate Polish PESEL identification numbers according to official specification.
         </Typography>
+      </Paper>
 
-        <Box sx={{ mt: 4 }}>
-          <PeselForm />
-        </Box>
-      </Box>
-    </Container>
+      <PeselForm />
+    </Box>
   );
 };

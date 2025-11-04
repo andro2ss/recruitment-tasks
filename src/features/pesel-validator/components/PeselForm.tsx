@@ -46,7 +46,16 @@ export const PeselForm = () => {
 
   return (
     <Box>
-      <Paper elevation={2} sx={{ p: 4, mb: 4 }}>
+      <Paper 
+        elevation={0}
+        sx={{ 
+          p: 4, 
+          mb: 4,
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: 3,
+        }}
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register('pesel')}
@@ -57,7 +66,7 @@ export const PeselForm = () => {
             placeholder="Enter 11-digit PESEL number"
             sx={{ mb: 3 }}
           />
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             <Button type="submit" variant="contained" size="large">
               Validate
             </Button>
