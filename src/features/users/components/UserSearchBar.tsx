@@ -12,13 +12,15 @@ export const UserSearchBar = ({ value, onChange }: UserSearchBarProps) => {
       fullWidth
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      placeholder="Search by name or email..."
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon />
-          </InputAdornment>
-        ),
+      placeholder="Search by name"
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        },
       }}
       sx={{
         mb: 3,

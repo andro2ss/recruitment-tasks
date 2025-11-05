@@ -2,6 +2,8 @@
 
 Three React applications built with TypeScript, Material-UI, and modern web technologies.
 
+🌐 **[Live Demo](https://andro2ss.github.io/recruitment-tasks/)**
+
 ## 🚀 Tech Stack
 
 - **React 18** with **TypeScript**
@@ -13,6 +15,22 @@ Three React applications built with TypeScript, Material-UI, and modern web tech
 - **React Hook Form** + **Zod** - Forms and validation
 - **Vitest** - Unit testing
 - **Axios** - HTTP client
+
+## 📋 Recruitment Tasks
+
+### Task 1
+
+Write a React program that handles a file upload form for text files, then randomly rearranges the letters in each word while preserving the first and last letter. Take into account punctuation, uppercase/lowercase letters, multi-line texts, and Polish characters.
+
+### Task 2
+
+Write a React program to validate PESEL numbers according to the official format specification. Prepare unit tests checking several invalid data sets and at least one valid PESEL number.
+
+### Task 3
+
+Write a React application that handles the API available at https://gorest.co.in/. The application should have a view displaying a list of users (fetched from the API) and provide the ability to search and edit existing entries.
+
+---
 
 ## 📋 Projects
 

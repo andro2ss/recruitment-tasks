@@ -12,7 +12,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,css,json}\"",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
