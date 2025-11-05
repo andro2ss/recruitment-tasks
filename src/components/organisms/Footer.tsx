@@ -43,7 +43,7 @@ export const Footer = () => {
 
             <IconButton
               component={Link}
-              href="https://github.com/andro2ss"
+              href="https://github.com/andro2ss/recruitment-tasks"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
