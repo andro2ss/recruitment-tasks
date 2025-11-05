@@ -49,4 +49,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+], {
+  basename: '/recruitment-tasks',
+})
